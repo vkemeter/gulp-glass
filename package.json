@@ -1,0 +1,43 @@
+{
+  "name": "@agostone/gulp-glass",
+  "version": "0.0.0",
+  "description": "gulp task loader",
+  "keywords": [
+    "gulp",
+    "task",
+    "loader"
+  ],
+  "author": {
+    "name": "Agoston Nagy",
+    "url": "https://github.com/agostone"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agostone/gulp-glass.git"
+  },
+  "main": "./Glass.js",
+  "dependencies": {
+    "glob": "7.x",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^7.5.0",
+    "eslint-config-node": "^4.0.0",
+    "husky": "^1.3.1",
+    "gulp": "4.x",
+    "jasmine": "^3.4.0",
+    "jasmine-expect": "^4.0.3"
+  },
+  "peerDependencies": {
+    "gulp": "4.x"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
