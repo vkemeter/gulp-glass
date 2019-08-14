@@ -1,4 +1,4 @@
-# agna-gulp-glass
+# gulp-glass
 Glass is a task loader for gulp, making it possible to organize tasks into files and directories.
 
 ## Features
