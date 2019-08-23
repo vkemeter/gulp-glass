@@ -8,7 +8,7 @@ jobs:
   include:
     - stage: release
       node_js: '12'
-      script: echo "Versioning & Deployment"
+      script: "npm config set '//registry.npmjs.org/:_authToken' '${NPM_TOKEN}'"
       deploy:
         provider: script
         script: "npx semantic-release"
