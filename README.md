@@ -4,9 +4,10 @@ Glass is a task loader for gulp, making it possible to organize tasks into files
 ## Features
 - Organize tasks into files and directories
 - Specifying as many task path(s) as you wish
+- Task aliasing
 
 ## Install
-$ npm install git://github.com/agostone/agna-gulp-glass.git --save-dev
+$ npm install @agostone/gulp-glass --save-dev
 
 ## Usage
 Replace the contents of your gulpfile.js with the following:
@@ -27,7 +28,7 @@ If the configuration parameter is a plain javascript object, the structure is th
 ```
 {
   taskPaths: '<path>'|['<path>', '<path>', ...],
-  pattern: '<pattern>',
+  filePattern: '<pattern>',
   sort: <function>,
   nameResolver: <function>
 }
@@ -68,7 +69,7 @@ For example (default behavior):
 ```
 
 ## Task registration
-Task are automatically loaded and registered by agna-gulp-glass. 
+Tasks are automatically loaded and registered by gulp-glass. 
 Loading/registration order is defined by the sort, task names by the nameResolver configuration parameter.
 
 ### Examples
@@ -95,17 +96,30 @@ module.exports = function() {
 }
 ```
 
+### Task aliasing
+To create task aliases you can export an alias property on the gulp task function.
+The alias should be either a string defining one alias, or an array of string defining multiple aliases.
+Task aliases always override the name resolver.
+
+### Example
+```
+'use strict';
+
+const { src, dest } = require('gulp');
+
+module.exports = function() {
+  return src('src/*.js')
+    .pipe(dest('output/'));
+}
+
+module.exports.alias = 'taskAlias';
+// or
+module.exports.alias = ['taskAlias1', 'taskAlias2'];
+```
 ## Running the tests
 ```
-$ jasmine
-```
-
-## Creating the docs
-```
-$ jsdoc --verbose -c ./jsdoc/configuration.json Glass.js
+$ npm run test
 ```
 
 ## Todo
 - Lazy loading tasks, only when gulp really needs them
-- Task aliasing
-- Registering in NPM

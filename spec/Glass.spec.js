@@ -46,7 +46,7 @@ describe('agna-gulp-glass', function () {
 
         taskNames.forEach((taskName) => {
             expect(tasks[taskName]).toBeFunction();
-            expect(typeof tasks[taskName].unwrap() === 'function').toBeTruthy();
+            expect(tasks[taskName].unwrap()).toBeFunction();
             expect(taskName.indexOf('.task') > 0).toBeTruthy();
         });
     });
@@ -83,5 +83,20 @@ describe('agna-gulp-glass', function () {
         const tasks = Object.getOwnPropertyNames(gulp._registry.tasks());
         expect(tasks.length).toBe(1);
         expect(tasks[0]).toBe('t');
+    });
+
+    it('should name task(s) according to the specified alias(es)', function () {
+        let glass = new Glass(`${__dirname}/taskAlias`);
+        const gulp = glass.loadTasks();
+
+        const tasks = gulp._registry.tasks();
+        const taskNames = Object.getOwnPropertyNames(tasks);
+        expect(taskNames.length).toBe(3);
+
+        taskNames.forEach((taskName) => {
+            expect(tasks[taskName]).toBeFunction();
+            expect(tasks[taskName].unwrap()).toBeFunction();
+            expect(['testAlias1', 'testAlias2', 'testAlias3'].indexOf(taskName) >= 0).toBeTruthy();
+        });
     });
 });

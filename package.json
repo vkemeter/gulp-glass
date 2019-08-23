@@ -2,6 +2,7 @@
   "name": "@agostone/gulp-glass",
   "version": "1.0.0",
   "description": "gulp task loader",
+  "license": "MIT",
   "keywords": [
     "gulp",
     "task",

@@ -64,7 +64,16 @@ class Glass {
         }
 
         // Registering tasks
-        files.forEach((file) => gulp.task(this.nameResolver(file), require(file)));
+        files.forEach((file) => {
+            const taskFunction = require(file);
+            const taskNames = isArray(taskFunction.alias)
+                ? taskFunction.alias
+                : isString(taskFunction.alias)
+                    ? [taskFunction.alias]
+                    : [this.nameResolver(file)];
+
+            taskNames.forEach((taskName) => gulp.task(taskName, taskFunction));
+        });
 
         return gulp;
     }
