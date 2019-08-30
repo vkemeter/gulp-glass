@@ -14,11 +14,11 @@ jobs:
       script: "npm config set '//registry.npmjs.org/:_authToken' '${NPM_TOKEN}'"
       deploy:
         provider: script
-        script: "npx semantic-release"
+        script: "npm semantic-release"
         on:
           tags: false
 stages:
   - lint
   - test
   - name: release
-    if: branch = master AND NOT commit_message =~ /
+    if: branch = master
