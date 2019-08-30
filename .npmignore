@@ -1,0 +1,6 @@
+# Do not publish files only needed for development
+spec
+.releaserc
+.travis.yml
+commitlint.config.js
+eslint.json
