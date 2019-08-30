@@ -14,7 +14,7 @@ jobs:
       script: "npm config set '//registry.npmjs.org/:_authToken' '${NPM_TOKEN}'"
       deploy:
         provider: script
-        script: "npm semantic-release"
+        script: "semantic-release"
         on:
           tags: false
 stages:
