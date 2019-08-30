@@ -6,6 +6,9 @@ node_js:
 
 jobs:
   include:
+    - stage: lint
+      node_js: '12'
+      script: "npm run lint"
     - stage: release
       node_js: '12'
       script: "npm config set '//registry.npmjs.org/:_authToken' '${NPM_TOKEN}'"
@@ -15,6 +18,7 @@ jobs:
         on:
           tags: false
 stages:
+  - lint
   - test
   - name: release
-    if: branch = master
+    if: branch = master AND NOT commit_message =~ /

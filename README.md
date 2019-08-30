@@ -1,4 +1,4 @@
-# gulp-glass
+# gulp-glass [![Build Status](https://travis-ci.com/agostone/gulp-glass.svg?branch=master)](https://travis-ci.com/agostone/gulp-glass)
 Glass is a task loader for gulp, making it possible to organize tasks into files and directories.
 
 ## Features
