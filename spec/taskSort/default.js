@@ -1,5 +1,5 @@
 'use strict';
 
-const {series} = require('gulp');
+const { series } = require('gulp');
 
-module.exports = series('test1','test2');
+module.exports = series('test1', 'test2');

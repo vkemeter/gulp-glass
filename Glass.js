@@ -1,6 +1,12 @@
 'use strict';
 
-const {isString, isPlainObject, isArray, isFunction} = require('lodash');
+const {
+    isString,
+    isPlainObject,
+    isArray,
+    isFunction,
+} = require('lodash');
+
 const glob = require('glob');
 const gulp = require('gulp');
 const path = require('path');
@@ -50,11 +56,11 @@ class Glass {
      */
     loadTasks() {
         // Consolidating file list from task paths
-        let files = this.taskPaths.reduce((files, taskPath) => {
-            const filesInPath = glob.sync(this.filePattern, {cwd: taskPath});
+        let files = this.taskPaths.reduce((accumulatedFiles, taskPath) => {
+            const filesInPath = glob.sync(this.filePattern, { cwd: taskPath });
             return [
-                ...files,
-                ...filesInPath.map((file) => path.join(path.resolve(taskPath), file))
+                ...accumulatedFiles,
+                ...filesInPath.map((file) => path.join(path.resolve(taskPath), file)),
             ];
         }, []);
 
@@ -65,6 +71,7 @@ class Glass {
 
         // Registering tasks
         files.forEach((file) => {
+            // eslint-disable-next-line global-require,import/no-dynamic-require
             const taskFunction = require(file);
             const taskNames = isArray(taskFunction.alias)
                 ? taskFunction.alias
