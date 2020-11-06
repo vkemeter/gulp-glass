@@ -79,7 +79,9 @@ class Glass {
                     ? [taskFunction.alias]
                     : [this.nameResolver(file)];
 
-            taskNames.forEach((taskName) => gulp.task(taskName, taskFunction));
+            if (taskFunction.enabled === true) {
+                taskNames.forEach((taskName) => gulp.task(taskName, taskFunction));
+            }
         });
 
         return gulp;
